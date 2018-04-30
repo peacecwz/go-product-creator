@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"math/rand"
+	"os"
 	"time"
 
 	"github.com/jinzhu/gorm"
@@ -41,14 +42,14 @@ func main() {
 
 func DB() *gorm.DB {
 
-	user := "postgres"
-	password := "1234"
-	host := "localhost"
-	port := "5433"
-	_db := "trendyol_case"
+	user := os.Getenv("DB_USER")
+	password := os.Getenv("DB_PASSWORD")
+	host := os.Getenv("DB_HOST")
+	port := os.Getenv("DB_PORT")
+	_db := os.Getenv("DB")
 	conStr := fmt.Sprintf("host=%v port=%v user=%v dbname=%v password=%v sslmode=disable", host, port, user, _db, password)
 
-	db, err := gorm.Open("postgres", conStr)
+	db, err := gorm.Open(os.Getenv("DB_TYPE"), conStr)
 	if err != nil {
 		panic(err)
 	}

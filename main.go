@@ -15,7 +15,7 @@ type Product struct {
 	Id              int       `gorm:"column:Id"`
 	Name            string    `gorm:"column:Name"`
 	Price           float64   `gorm:"column:Price"`
-	LastUpdatedItem time.Time `gorm:"column:LastUpdatedItem"`
+	LastUpdatedTime time.Time `gorm:"column:LastUpdatedTime"`
 }
 
 func (Product) TableName() string {
